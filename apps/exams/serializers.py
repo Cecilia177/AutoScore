@@ -1,8 +1,8 @@
-from datetime import datetime
 from rest_framework import serializers
-from .models import Question
+from .models import Examination
 
 
-class ExamSerializer(serializers.Serializer):
-    exam_time = serializers.DateTimeField(default=datetime.now)
-    exam_name = serializers.CharField(max_length=20, default="第一次考试")
+class ExamSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Examination
+        fields = ['exam_time', 'exam_name', 'questions', 'students']

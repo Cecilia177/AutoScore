@@ -10,24 +10,25 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ('exams', '0001_initial'),
         ('students', '0002_auto_20200123_1659'),
         ('questions', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Examination',
+            name='Score',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('exam_time', models.DateTimeField(verbose_name='考试时间（年/月）')),
-                ('exam_name', models.CharField(max_length=20, verbose_name='考试名称')),
                 ('add_time', models.DateTimeField(default=datetime.datetime.now, verbose_name='添加时间')),
-                ('questions', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='questions.Question')),
-                ('students', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='students.Student')),
+                ('score', models.FloatField(default=0, verbose_name='分数值')),
+                ('exam', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='exams.Examination')),
+                ('question', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='questions.Question')),
+                ('student', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='students.Student')),
             ],
             options={
-                'verbose_name': '考试信息',
-                'verbose_name_plural': '考试信息',
+                'verbose_name': '分数信息',
+                'verbose_name_plural': '分数信息',
             },
         ),
     ]

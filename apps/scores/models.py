@@ -13,7 +13,7 @@ class Score(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     add_time = models.DateTimeField(default=datetime.now, verbose_name="添加时间")
-    score = models.IntegerField(max_length=3, default=0, verbose_name="分数值")
+    score = models.FloatField(default=0, verbose_name="分数值")
 
     class Meta:
         verbose_name = "分数信息"

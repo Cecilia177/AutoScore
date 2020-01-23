@@ -15,14 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from exams.views import ExamsListView
 from rest_framework.documentation import include_docs_urls
+from rest_framework.routers import DefaultRouter
+from apps.exams import views as exams_views
+from apps.questions import views as questions_views
+
+router = DefaultRouter()
+router.register(r'exams', exams_views.ExamsListViewSet)
+router.register(r'questions', questions_views.QuestionsViewSet)
+router.register(r'references', questions_views.ReferenceViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
 
-    path('exams/', ExamsListView.as_view(), name="exams-list"),
+    path('docs/', include_docs_urls(title="AutoScore")),
 
-    path('docs/', include_docs_urls(title="AutoScore"))
+    path('', include(router.urls)),
 ]
