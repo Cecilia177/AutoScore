@@ -4,3 +4,4 @@ django-filter
 markdown
 mysqlclient
 coreapi
+djangorestframework-jwt
