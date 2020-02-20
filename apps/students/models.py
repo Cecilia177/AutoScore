@@ -2,7 +2,6 @@ from datetime import datetime
 from django.db import models
 from questions.models import Question
 from exams.models import Examination
-# Create your models here.
 
 
 class Student(models.Model):
@@ -17,6 +16,7 @@ class Student(models.Model):
     class Meta:
         verbose_name = "学生信息"
         verbose_name_plural = verbose_name
+        unique_together = ("student_sn", "exam")
 
     def __str__(self):
         return self.student_name + " " + self.student_sn
@@ -29,14 +29,16 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     text = models.TextField(max_length=200, default="", verbose_name="回答内容")
     student = models.ForeignKey(Student, null=True, blank=True, on_delete=models.CASCADE, related_name="answers")
-    score = models.FloatField(max_length=3, default=0.0, verbose_name="得分")
+    score = models.FloatField(max_length=3, default=-1.0, verbose_name="得分")
 
     class Meta:
         verbose_name = "学生回答"
         verbose_name_plural = verbose_name
+        unique_together = ('student', 'question')
 
     def __str__(self):
         return self.text
+
 
 
 

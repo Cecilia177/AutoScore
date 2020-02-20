@@ -22,14 +22,19 @@ from rest_framework_jwt import views as jwt_views
 from apps.exams import views as exams_views
 from apps.questions import views as questions_views
 from apps.users import views as users_views
+from apps.students import views as students_views
+# from apps.answers import views as answers_views
 
 
 router = DefaultRouter()
 router.register(r'exams', exams_views.ExamsListViewSet)
 router.register(r'questions', questions_views.QuestionsViewSet)
-router.register(r'references', questions_views.ReferenceViewSet)
+# router.register(r'references', questions_views.ReferenceViewSet)
 router.register(r'users', users_views.UserViewSet)
-# router.register(r'login', users_views.LoginViewSet)
+router.register(r'students', students_views.StudentViewSet)
+router.register(r'autoscoring', students_views.ScoringViewSet)
+router.register(r'answers', students_views.AnswerViewSet)
+router.register(r'scores', students_views.ScoresViewSet)
 
 # router_front = DefaultRouter()
 # router_front.register(r'login', users_views.LoginViewSet)

@@ -1,3 +1,5 @@
+###pip install -i https://pypi.doubanio.com/simple/ xxx ###
+
 django
 djangorestframework
 django-filter
@@ -5,3 +7,14 @@ markdown
 mysqlclient
 coreapi
 djangorestframework-jwt
+
+numpy
+gensim
+StanfordCoreNLP
+pymysql
+scipy
+zhon
+jieba
+nltk
+joblib
+scikit-learn
